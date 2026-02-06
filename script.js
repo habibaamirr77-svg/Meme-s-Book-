@@ -1,21 +1,33 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // إعداد مطر الورود والقلوب
     const bgContainer = document.getElementById('floating-elements');
     const items = ['💖', '🌷', '🌸', '✨', '🎀', '💝', '🌹', '💐'];
-    const count = 25;
+    const count = 35; // عدد العناصر المتساقطة
 
     for (let i = 0; i < count; i++) {
         const el = document.createElement('div');
         el.className = 'floating';
         el.textContent = items[Math.floor(Math.random() * items.length)];
+        
+        // توزيع أفقي عشوائي
         el.style.left = Math.random() * 100 + 'vw';
-        el.style.top = Math.random() * 100 + 'vh';
-        el.style.fontSize = (Math.random() * 25 + 10) + 'px';
-        el.style.setProperty('--i', i);
-        el.style.animationDuration = (Math.random() * 3 + 4) + 's';
-        el.style.animationDelay = (Math.random() * 2) + 's';
+        
+        // جعل العناصر تبدأ من ارتفاعات مختلفة (فوق الشاشة) لتسقط تباعاً
+        el.style.top = Math.random() * -100 + 'vh'; 
+        
+        el.style.fontSize = (Math.random() * 20 + 15) + 'px';
+        
+        // سرعة سقوط عشوائية (بين 4 و 8 ثواني)
+        const duration = (Math.random() * 4 + 4) + 's';
+        el.style.animationDuration = duration;
+        
+        // تأخير عشوائي لتبدأ الورود بالسقوط في أوقات مختلفة
+        el.style.animationDelay = (Math.random() * 8) + 's';
+        
         bgContainer.appendChild(el);
     }
 
+    // إعداد محتوى الكتاب
     const book = document.getElementById('book');
     const totalSheets = 9;
 
@@ -58,6 +70,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     ];
 
+    // إنشاء الصفحات برمجياً
     for (let i = 0; i < totalSheets; i++) {
         const sheet = document.createElement('div');
         sheet.className = 'page';
@@ -66,45 +79,29 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const page = pages[i];
         
+        // الجزء الأمامي للورقة
+        let frontContent = '';
         if (page.front.isCover) {
-            sheet.innerHTML += `<div class="front cover-front">
-                <h1>${page.front.coverTitle}</h1>
-                <p>${page.front.coverSubtitle}</p>
-            </div>`;
-        } else if (page.front.title) {
-            sheet.innerHTML += `<div class="front">
-                <div class="page-content">
-                    <h3>${page.front.title}</h3>
-                    <p>${page.front.text}</p>
-                </div>
-            </div>`;
+            frontContent = `<div class="front cover-front"><h1>${page.front.coverTitle}</h1><p>${page.front.coverSubtitle}</p></div>`;
         } else {
-            sheet.innerHTML += `<div class="front"><div class="page-content"></div></div>`;
+            frontContent = `<div class="front"><div class="page-content"><h3>${page.front.title}</h3><p>${page.front.text}</p></div></div>`;
         }
 
+        // الجزء الخلفي للورقة
+        let backContent = '';
         if (page.back.isEnd) {
-            sheet.innerHTML += `<div class="back cover-back">
-                <h2>${page.back.title}</h2>
-                <p style="margin-top: 15px;">${page.back.text}</p>
-            </div>`;
-        } else if (page.back.title) {
-            sheet.innerHTML += `<div class="back">
-                <div class="page-content">
-                    <h3>${page.back.title}</h3>
-                    <p>${page.back.text}</p>
-                </div>
-            </div>`;
+            backContent = `<div class="back cover-back"><h2>${page.back.title}</h2><p style="margin-top: 15px;">${page.back.text}</p></div>`;
         } else {
-            sheet.innerHTML += `<div class="back"><div class="page-content"></div></div>`;
+            backContent = `<div class="back"><div class="page-content"><h3>${page.back.title}</h3><p>${page.back.text}</p></div></div>`;
         }
 
+        sheet.innerHTML = frontContent + backContent;
         sheet.onclick = function() { togglePage(i + 1); };
         book.appendChild(sheet);
     }
 
     function togglePage(index) {
         const sheet = document.getElementById('p' + index);
-        
         if (sheet.classList.contains('flipped')) {
             sheet.classList.remove('flipped');
             setTimeout(() => { sheet.style.zIndex = totalSheets - index + 1; }, 600);
@@ -114,4 +111,3 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 });
-

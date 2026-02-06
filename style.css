@@ -24,6 +24,7 @@ body {
     position: relative;
 }
 
+/* خلفية المطر */
 #floating-elements {
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
@@ -31,32 +32,37 @@ body {
     z-index: 0;
 }
 
-@keyframes float {
-    0%, 100% { transform: translateY(0) rotate(0deg); }
-    25% { transform: translateY(-20px) rotate(10deg); }
-    50% { transform: translateY(0) rotate(0deg); }
-    75% { transform: translateY(20px) rotate(-10deg); }
+@keyframes rain {
+    0% {
+        transform: translateY(-10vh) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.7;
+    }
+    90% {
+        opacity: 0.7;
+    }
+    100% {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+    }
 }
 
 .floating {
     position: absolute;
-    opacity: 0.15;
+    top: -50px;
     user-select: none;
-    animation: float 6s ease-in-out infinite;
-    animation-delay: calc(var(--i, 0) * 0.5s);
+    animation: rain linear infinite;
 }
 
-.floating:hover {
-    opacity: 0.4;
-    animation-play-state: paused;
-}
-
+/* تصميم الكتاب */
 .book {
     position: relative;
     width: 380px;
     height: 500px;
     transform-style: preserve-3d;
-    box-shadow: 0 30px 60px rgba(0,0,0,0.1);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.2);
     z-index: 10;
 }
 
@@ -83,20 +89,12 @@ body {
     padding: 25px 20px;
     border-radius: 0 15px 15px 0;
     overflow: hidden;
-    z-index: 1;
 }
 
 .back {
     transform: rotateY(180deg);
     border-radius: 15px 0 0 15px;
     background-color: #fff5f5;
-    z-index: 1;
-}
-
-/* صفحات فارغة */
-.front:empty, .back:empty {
-    background-color: transparent;
-    border: none;
 }
 
 .cover-front {
@@ -110,88 +108,42 @@ body {
 
 .cover-front h1 {
     font-size: 1.5rem;
-    font-family: 'Georgia', serif;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
     margin-bottom: 5px;
-}
-
-.cover-front p {
-    font-size: 0.9rem;
-    opacity: 0.95;
 }
 
 .cover-back { 
     background: url('https://i.postimg.cc/28fpYkhp/Image-6.jpg') center/cover no-repeat !important; 
     color: #ffffff; 
-    justify-content: flex-end;
-    overflow: hidden;
     text-align: center;
+    justify-content: flex-end;
     padding-bottom: 60px;
     text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
 }
 
-.cover-back h2 {
-    font-size: 1.8rem;
-    margin-bottom: 15px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
-}
-
-.cover-back p {
-    font-size: 1rem;
-    line-height: 1.6;
-    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
-}
-
-/* لجعل الكلام يملأ الصفحة */
 .page-content {
     width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
     background: url('https://i.postimg.cc/d0RkWt2C/Instagram.jpg') center/cover no-repeat;
-    background-color: rgba(255, 255, 255, 0.2);
     border-radius: 10px;
     padding: 25px;
     color: #ffffff;
     text-align: center;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.95);
+    justify-content: flex-start;
 }
 
 .page-content h3 {
-    color: #fff;
-    font-size: 1.5rem;
-    margin-bottom: 18px;
-    font-family: 'Georgia', serif;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
+    font-size: 1.4rem;
+    margin-bottom: 15px;
 }
 
 .page-content p {
-    font-size: 1.15rem;
-    line-height: 2;
-    color: #fff;
-    text-align: justify;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9);
-}
-
-/* الصفحة تملأ المساحة بالكامل */
-.front .page-content,
-.back .page-content {
-    flex: 1;
-    justify-content: flex-start;
-    padding-bottom: 10px;
+    font-size: 1.1rem;
+    line-height: 1.8;
 }
 
 .flipped { 
     transform: rotateY(-180deg); 
 }
-
-.page-number {
-    position: absolute;
-    bottom: 10px;
-    font-size: 0.7rem;
-    color: #a08080;
-    font-family: 'Segoe UI', Tahoma, sans-serif;
-}
-
