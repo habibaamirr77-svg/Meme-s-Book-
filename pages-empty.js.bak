@@ -1,0 +1,135 @@
+document.addEventListener('DOMContentLoaded', function() {
+    const bgContainer = document.getElementById('floating-elements');
+    const items = ['💖', '🌷', '🌸', '✨', '🎀', '💝', '🌹', '💐'];
+    const count = 25;
+
+    for (let i = 0; i < count; i++) {
+        const el = document.createElement('div');
+        el.className = 'floating';
+        el.textContent = items[Math.floor(Math.random() * items.length)];
+        el.style.left = Math.random() * 100 + 'vw';
+        el.style.top = Math.random() * 100 + 'vh';
+        el.style.fontSize = (Math.random() * 25 + 10) + 'px';
+        el.style.setProperty('--i', i);
+        el.style.animationDuration = (Math.random() * 3 + 4) + 's';
+        el.style.animationDelay = (Math.random() * 2) + 's';
+        bgContainer.appendChild(el);
+    }
+
+    const book = document.getElementById('book');
+    const totalSheets = 9;
+
+    const pages = [
+        {
+            front: { title: "", text: "", isCover: true, coverTitle: "April's queen 👸 🎀", coverSubtitle: "" },
+            back: { title: "Hey Meme! 🎀", text: "this messages from Another world VIP for u , we want to say how much we love u 🥰 enjoy meme🎀" }
+        },
+        {
+            front: { title: "", text: "" },
+            back: { title: "ميمي حب حياتي اللي مستحيل أستغنى عنها بيوم أو افرط فيها .. هل أنتِ‏ أتظنين أن يوم ميلادكِ يوماً عادي ؟‏ يستحيل أن يمُر مِيلاد قطعةٍ من روحي‏ و بهجتي و سعادتي و فرحتي‏ دون أن أُشارككِ مثل يوم أتيتي فيه ! \n\nهاليوم بالذّات 8/april الله جاب لي قطعة من قلبي اللي أحسها توأمي و أختي مو مجرد صديقة .. اكثر شخص احب اسولف معاه و أرتاح له و بمجرد ان اذا بينا زعـل مستحيل وحده بينا تسكت.. لازم وحده تبادر و نعاتب بعض لين ما نعرف غلاتنا ببعض، مريم انتي روحي و قلبي لدرجة مستحيل يمر يوم و ما أكلمج و احس فيه شي ناقص اذا ما كلمتج و صرتي روتيني، الله لا يحرمني منج و يا نعمة من ربي عظيمة كل عام و أنتي ايامج كلها سعادة و ما اشوف الا بعيونج الفرح و استانس اذا شفتج مستانسه أحبج ♥️♥️♥️♥️♥️ happiest  birthday my soulmate I hope you enjoy your day i loveeee youuu🦋🦋🦋🦋🦋🦋", text: "Soso ♥️🦋" }
+        },
+        {
+            front: { title: "", text: "" },
+            back: { title: "Happy birthday ya a7la maryuma fe aldonya 🥳🥳", text: "أحبك وكل سنينك يارب تكون دايما احلى من الي قبلها احلى مين يكبر يا عسوله دايما كوني مبسوطة لان ما يليقلك الا الفرح انبسطي في يومك❤️❤️ Nadosh" }
+        },
+        {
+            front: { title: "", text: "" },
+            back: { title: "ميرو يا اكثر قلب يحتويني ويفهمني مهما كانت ظروفي .. كل سنة و انتِ اقرب شخص لقلبي يا اكثر وحدة تفهمني من نظرة وتعرف وش بقلبي قبل انطقه", text: "محظوظة فيكِ وبوجودك اللي يخلي كل شي سهل وجميل .. عسى سنينك كلها حب وتشبه طهر قلبك 🤍" }
+        },
+        {
+            front: { title: "", text: "" },
+            back: { title: "", text: "", isEnd: true }
+        }
+        {
+            front: { title: "", text: "" },
+            back: { title: "", text: "" }
+        },
+        {
+            front: { title: "", text: "" },
+            back: { title: "", text: "" }
+        },
+        {
+            front: { title: "", text: "" },
+            back: { title: "", text: "", isEnd: true }
+        }
+    ];
+
+    for (let i = 0; i < totalSheets; i++) {
+        const sheet = document.createElement('div');
+        sheet.className = 'page';
+        sheet.id = 'p' + (i + 1);
+        sheet.style.zIndex = totalSheets - i;
+
+        const page = pages[i];
+        
+        if (page.front.isCover) {
+            sheet.innerHTML += `<div class="front cover-front">
+            </div>`;
+        } else if (page.front.title) {
+            sheet.innerHTML += `<div class="front">
+                <div class="page-content">
+                    <h3>${page.front.title}</h3>
+                    <p>${page.front.text}</p>
+                </div>
+            </div>`;
+        } else {
+            sheet.innerHTML += `<div class="front"><div class="page-content"></div></div>`;
+        }
+
+        if (page.back.isEnd) {
+            sheet.innerHTML += `<div class="back cover-back">
+            </div>`;
+        } else if (page.back.title) {
+            sheet.innerHTML += `<div class="back">
+                <div class="page-content">
+                    <h3>${page.back.title}</h3>
+                    <p>${page.back.text}</p>
+                </div>
+            </div>`;
+        } else {
+            sheet.innerHTML += `<div class="back"><div class="page-content"></div></div>`;
+        }
+
+        sheet.onclick = function() { togglePage(i + 1); };
+        book.appendChild(sheet);
+    }
+
+    function togglePage(index) {
+        const sheet = document.getElementById('p' + index);
+        
+        if (sheet.classList.contains('flipped')) {
+            sheet.classList.remove('flipped');
+            setTimeout(() => { sheet.style.zIndex = totalSheets - index + 1; }, 600);
+        } else {
+            sheet.classList.add('flipped');
+            sheet.style.zIndex = index;
+        }
+    }
+
+    // Profile picture modal functionality
+    const profilePic = document.querySelector('.profile-pic');
+    const profileModal = document.getElementById('profileModal');
+    const modalImg = document.getElementById('modalImg');
+    const closeModal = document.getElementById('closeModal');
+
+    if (profilePic && profileModal) {
+        profilePic.addEventListener('click', function(e) {
+            e.stopPropagation();
+            profileModal.classList.add('active');
+            modalImg.src = this.querySelector('img').src;
+            document.body.style.overflow = 'hidden';
+        });
+
+        closeModal.addEventListener('click', function() {
+            profileModal.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+
+        profileModal.addEventListener('click', function(e) {
+            if (e.target === this) {
+                profileModal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+    }
+});
