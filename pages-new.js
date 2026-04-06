@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     const book = document.getElementById('book');
-    const totalSheets = 17;
+    const totalSheets = 18;
 
     const pages = [
         {

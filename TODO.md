@@ -1,16 +1,10 @@
-# Add 🎀bebo🎀 Birthday Message to Pages 15,16,17
+# Task Progress: Add end cover like front cover & remove nouran duplicate
 
-## Plan Summary
-**Goal:** Add Arabic birthday message from bebo to pages[15-17] in pages.js.
+## Steps to Complete (from approved plan):
+- [x] Step 1: Edit pages.js - Remove duplicate nouran (now single on page 15), shift bebo to 16-17, totalSheets=17.
+- [x] Step 2: Add new end cover as page 17 back with "happy birthday to the best meme 🎀💕✨" (used pages-new.js + index.html update).
+- [ ] Step 3: Test book flip in browser (17 pages total, single nouran, end cover present).
+- [ ] Step 4: Complete task.
 
-**Files Edited:**
-- pages.js: Update back.text for pages[15], [16], [17]
-- TODO.md: Progress tracking
-
-**Approved Steps:**
-- [x] Step 1: Create TODO.md with steps
-- [x] Step 2: Edit pages.js to add bebo message parts
-- [x] Step 3: Update TODO.md with progress
-- [x] Step 4: Test with open index.html
-- [x] Step 5: Complete task
+Current status: Starting edits.
 

@@ -62,15 +62,25 @@
         <img src="https://i.postimg.cc/Fs42NYMy/Gemini-Generated-Image-a5p2xca5p2xca5p2.png" alt="VIP Profile" loading="lazy" class="profile-img">
     </div>
 
-    <div class="profile-modal" id="profileModal">
-      <img src="https://i.postimg.cc/DZGMKh5D/Gemini-Generated-Image-cia1edcia1edcia1.png" alt="Meme Profile Full" id="modalImg">
-      <button class="close-btn" id="closeModal">&times;</button>
-    </div>
+
 
     <div id="floating-elements"></div>
 
     <div class="book" id="book"></div>
 
-<script src="pages.js"></script>
+<script src="pages-new.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const pics = document.querySelectorAll('.profile-pic');
+  console.log('Inline pics:', pics.length);
+  pics.forEach((pic, i) => {
+    pic.style.cursor = 'pointer';
+    pic.addEventListener('click', function() {
+      console.log('Inline clicked', i);
+      this.classList.toggle('enlarged');
+    });
+  }); 
+});
+</script>
 </body>
 </html>
