@@ -1,18 +1,16 @@
-# Make Profiles Same (6 Total Profiles)
+# Add 🎀bebo🎀 Birthday Message to Pages 15,16,17
 
-## Plan Summary (Approved)
-**Goal:** Add 2 new profiles (total 6), all using same main Meme image while keeping uniform gift styling/positions. Unify existing too.
+## Plan Summary
+**Goal:** Add Arabic birthday message from bebo to pages[15-17] in pages.js.
 
-**Files to Edit:**
-- index.html: Add 2 new `.profile-pic` divs with same img src/alt; unify all 6 srcs to main image.
-- style.css: Add nth-of-type(5/6) positions (center-left/right).
+**Files Edited:**
+- pages.js: Update back.text for pages[15], [16], [17]
+- TODO.md: Progress tracking
 
-**Progress:**
-- [x] Step 1: Edit index.html to add/unify 6 profiles ✅
-- [x] Step 2: Edit style.css to position new profiles ✅
-- [x] Step 3: Verify/reload page ✅
-- [x] Step 4: Complete ✅
+**Approved Steps:**
+- [x] Step 1: Create TODO.md with steps
+- [x] Step 2: Edit pages.js to add bebo message parts
+- [x] Step 3: Update TODO.md with progress
+- [x] Step 4: Test with open index.html
+- [x] Step 5: Complete task
 
-All 6 profiles now use the same Meme image, positioned uniformly with gift wrapping (corners + center sides). pages.js handles all dynamically.
-
-Open `index.html` in browser to view: `open index.html`
